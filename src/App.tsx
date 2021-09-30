@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useReducer} from 'react';
 import './App.css';
+import {Counter} from "./Caunt/counter";
+import {Setting} from "./SetCounter/Setteng";
+import s from './Caunt/counter.module.css';
+import {restoreState} from "./SetCounter/localstorage";
+import {ReducerCaunt} from "./reducer/reducerCaunt";
+
+
+export type countType = {
+	startCount: number
+	maxValue: number
+	startValue: number
+	disabled: boolean
+	setDisabledBTN: boolean
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const startNumber = 0;
+	const maxNumber = 5;
+	const [count, dispatchCount] = useReducer(ReducerCaunt, {
+		startCount: restoreState('start-value', startNumber),
+		maxValue: restoreState('maxvalue-value', maxNumber),
+		startValue: restoreState('start-value', startNumber),
+		disabled: false,
+		setDisabledBTN: true
+	})
+
+	return (
+		<div className={s.couterBody}>
+			<Counter dispatchCount={dispatchCount} count={count}/>
+			<Setting count={count} dispatchCount={dispatchCount}/>
+		</div>
+	);
 }
 
 export default App;
