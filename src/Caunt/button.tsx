@@ -8,13 +8,13 @@ type ButtonType = {
 }
 
 
-export let Button = (props:ButtonType ) => {
+export const Button = React.memo(function Button (props:ButtonType ) {
 
 	return (
 		<div>
 			<button className={s.button} onClick={props.callback} disabled={props.disabled}>{props.title}</button>
 		</div>
 	)
-}
+})
 
 

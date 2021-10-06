@@ -50,6 +50,7 @@ body {
 }
 .enterValue {
 	font-size: 25px;
+	font-weight:700;
 	color:blue;
 }
 .errorValue {

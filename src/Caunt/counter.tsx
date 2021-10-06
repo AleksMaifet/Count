@@ -4,29 +4,30 @@ import {Button} from "./button";
 import {CoutBody} from "./countValue";
 import {restoreState} from "../SetCounter/localstorage";
 import {countAC, CountHandlerTypes} from "../reducer/reducerCaunt";
-import {countType} from "../App";
+import {CounterType} from "../App";
 
-type CounterType = {
-	count: countType
-	dispatchCount: (action: CountHandlerTypes) => void
+type CounterBodyType = {
+	counterValuesHandler: number | JSX.Element
+	colorCount: string
+	counter: CounterType
+	dispatchCounter: (action: CountHandlerTypes) => void
 }
 
 
-export function Counter({count, dispatchCount}: CounterType) {
+export const CounterBody = React.memo(function Counter({counter, dispatchCounter,counterValuesHandler,colorCount}: CounterBodyType)  {
 	const incPlus = () => {
-		if (count.startCount < count.maxValue) dispatchCount(countAC(count.startCount + 1))
+		if (counter.startCount < counter.maxValue) dispatchCounter(countAC(counter.startCount + 1))
 	};
-	const resetCaunt = () => dispatchCount(countAC(restoreState('start-value', count.startCount)));
+	const resetCaunt = () => dispatchCounter(countAC(restoreState('start-value', counter.startCount)));
 	const incValue = 'inc';
 	const resetValue = 'reset';
-	const inc = count.startCount === count.maxValue || count.disabled;
-	const reset = count.disabled;
+	const inc = counter.startCount === counter.maxValue || counter.disabled;
+	const reset = counter.disabled;
 
 	return (
 		<div>
 			<div className={s.wrapper}>
-				<CoutBody startValue={count.startValue} disabled={count.disabled} count={count}
-									maxValue={count.maxValue}/>
+				<CoutBody colorCount={colorCount} counterValuesHandler={counterValuesHandler}/>
 			</div>
 			<div className={s.buttonWrapper}>
 				<Button title={incValue} callback={incPlus} disabled={inc}/>
@@ -34,4 +35,4 @@ export function Counter({count, dispatchCount}: CounterType) {
 			</div>
 		</div>
 	)
-}
+})

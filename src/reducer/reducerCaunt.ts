@@ -1,7 +1,7 @@
-import {countType} from "../App";
+import {CounterType} from "../App";
 
 
-export const ReducerCaunt = (state:countType, action:CountHandlerTypes):countType => {
+export const ReducerCount = (state:CounterType, action:CountHandlerTypes):CounterType => {
 	switch(action.type){
 		case "COUNT":
 			return {...state,startCount: action.number}
