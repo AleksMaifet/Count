@@ -2,11 +2,11 @@ import s from "../Caunt/counter.module.css";
 import {Button} from "../Caunt/button";
 import React from "react";
 import {InputSettings} from "./InputSettings";
-import {CounterType} from "../App";
+import {CounterType} from "../reducer/reducerCaunt";
 
 
 type SettingType = {
-	counter: CounterType
+	counter:CounterType
 	maxValueHandler:(e:any) => void
 	startValueHandler:(e:any) => void
 	startValueStorageHandler: () => void

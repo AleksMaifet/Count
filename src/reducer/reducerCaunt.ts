@@ -1,7 +1,26 @@
-import {CounterType} from "../App";
+import {restoreState} from "../SetCounter/localstorage";
+
+const startNumber = 0;
+const maxNumber = 5;
+
+export type CounterType = {
+	startCount: number
+	maxValue: number
+	startValue: number
+	disabled: boolean
+	setDisabledBTN: boolean
+}
+
+const initialization:CounterType = {
+	startCount: restoreState('start-value', startNumber),
+	maxValue: restoreState('maxvalue-value', maxNumber),
+	startValue: restoreState('start-value', startNumber),
+	disabled: false,
+	setDisabledBTN: true
+}
 
 
-export const ReducerCount = (state:CounterType, action:CountHandlerTypes):CounterType => {
+export const ReducerCount = (state = initialization, action:CountHandlerTypes):CounterType => {
 	switch(action.type){
 		case "COUNT":
 			return {...state,startCount: action.number}

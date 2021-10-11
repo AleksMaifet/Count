@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from '../Caunt/counter.module.css';
 import {Input} from "../Caunt/input";
-import {CounterType} from "../App";
+import {CounterType} from "../reducer/reducerCaunt";
 
 
 type InputSettingsType = {
